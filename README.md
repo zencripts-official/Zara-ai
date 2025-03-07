@@ -23,11 +23,11 @@ Contact
 
 For inquiries, support, or collaboration, reach out to us:
 
-- **Website:** zencripts.com
+- **Website:** zencripts.godaddysites.com
 
-- **Email:** support@zencripts.com
+- **Email:** zencripts@gmail.com
 
-- **GitHub:** Zencripts
+- **GitHub:** Zencripts-official
 
 ## License
 
