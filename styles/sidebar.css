@@ -1,0 +1,42 @@
+.sidebar {
+    background-color: white;
+    border-right: 1px solid #e5e7eb;
+    height: 100vh;
+    padding: 1rem;
+}
+
+.feature-item {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.feature-item:hover {
+    background-color: #f3f4f6;
+}
+
+.feature-item.active {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+@media (max-width: 1023px) {
+    .sidebar {
+        height: auto;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .sidebar {
+        padding: 0.75rem;
+    }
+    
+    .feature-item {
+        padding: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+}

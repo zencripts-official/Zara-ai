@@ -1,0 +1,47 @@
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f9fafb;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.app-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+}
+
+@media (max-width: 1023px) {
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 640px) {
+    .responsive-padding {
+        padding: 0.75rem;
+    }
+}
+
+/* Responsive text adjustments */
+@media (max-width: 640px) {
+    .text-responsive {
+        font-size: 0.9rem;
+    }
+    
+    h1.text-responsive {
+        font-size: 1.5rem;
+    }
+    
+    h2.text-responsive {
+        font-size: 1.25rem;
+    }
+}
