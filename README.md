@@ -19,6 +19,16 @@ Zara AI is an advanced AI chatbot developed by **Zencripts**. It provides AI-pow
 
 Contributions are welcome! Feel free to submit issues and pull requests.
 
+Contact
+
+For inquiries, support, or collaboration, reach out to us:
+
+- **Website:** zencripts.com
+
+- **Email:** support@zencripts.com
+
+- **GitHub:** Zencripts
+
 ## License
 
 Zara AI is open-source and licensed under the MIT License.
