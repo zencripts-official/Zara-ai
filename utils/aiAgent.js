@@ -1,76 +1,64 @@
-function createChatAgent(messages) {
-    const systemPrompt = `You are Zara AI, an advanced AI assistant created by Zencripts. You are professional, friendly, and helpful. You excel in web design, cybersecurity, automation, and education.
+require('dotenv').config(); // Load environment variables securely
 
-Current chat history:
+function createChatAgent(messages) {
+    const systemPrompt = `You are Zara AI, an advanced AI assistant created by Zencripts. 
+You specialize in web design, cybersecurity, automation, and education. 
+You are professional, friendly, and helpful.
+
+Current Chat History:
 ${JSON.stringify(messages)}`;
 
     return async (userMessage) => {
         try {
-            // Combine system prompt and user message for context
             const fullPrompt = `${systemPrompt}\n\nUser: ${userMessage}`;
-            const response = await fetchGeminiResponse(fullPrompt);
-            return response;
+            return await fetchGeminiResponse(fullPrompt);
         } catch (error) {
-            console.error('Chat agent error:', error);
-            throw new Error('Failed to get AI response');
+            console.error('Chat Agent Error:', error.message);
+            return "Sorry, an error occurred while processing your request.";
         }
     };
 }
 
 function createImageGenerationAgent() {
-    const systemPrompt = "You are an AI image generation assistant. Generate detailed image descriptions based on user prompts.";
+    const systemPrompt = "You are an AI image generation assistant. Generate detailed descriptions based on user prompts.";
 
     return async (prompt) => {
         try {
-            const fullPrompt = `${systemPrompt}\n\nUser prompt: ${prompt}\n\nPlease provide a detailed description for image generation based on this prompt.`;
-            const response = await fetchGeminiResponse(fullPrompt);
-            return response;
+            const fullPrompt = `${systemPrompt}\n\nUser Prompt: ${prompt}`;
+            return await fetchGeminiResponse(fullPrompt);
         } catch (error) {
-            console.error('Image generation error:', error);
-            throw new Error('Failed to generate image');
+            console.error('Image Generation Error:', error.message);
+            return "Sorry, image generation failed.";
         }
     };
 }
 
 async function fetchGeminiResponse(prompt) {
     try {
-        const API_KEY = "AIzaSyAZI99FJF21CseR1xp3B-3KurGgfW8S-00";
+        const API_KEY = process.env.API_KEY; 
+        if (!API_KEY) throw new Error("API Key missing. Set API_KEY in the environment.");
+
         const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
-        
+
         const response = await fetch(`${API_URL}?key=${API_KEY}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: prompt }]
-                }]
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
         });
 
         if (!response.ok) {
             const errorData = await response.json();
-            console.error('Gemini API error:', errorData);
-            throw new Error(`API error: ${response.status}`);
+            console.error('Gemini API Error:', errorData);
+            throw new Error(`API Error: ${response.status} - ${errorData.error.message}`);
         }
 
         const data = await response.json();
+        return data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
         
-        // Extract the response text from the Gemini API response
-        if (data.candidates && 
-            data.candidates[0] && 
-            data.candidates[0].content && 
-            data.candidates[0].content.parts && 
-            data.candidates[0].content.parts[0] && 
-            data.candidates[0].content.parts[0].text) {
-            return data.candidates[0].content.parts[0].text;
-        } else {
-            console.error('Unexpected API response structure:', data);
-            throw new Error('Invalid API response format');
-        }
     } catch (error) {
         console.error('Error fetching from Gemini API:', error);
-        throw error;
+        return "AI service is temporarily unavailable.";
     }
 }
+
+module.exports = { createChatAgent, createImageGenerationAgent };
