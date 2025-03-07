@@ -21,7 +21,7 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 
 ## **Contact**
 
-📧 Email: [contact@zencripts.com](zencripts@gmail.com)  
+📧 Email: [zencripts@gmail.com]  
 🌐 Website: [zencripts.com](https://zencripts.godaddysites.com)  
 ## License
 
