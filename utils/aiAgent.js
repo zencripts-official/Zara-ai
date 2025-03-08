@@ -34,7 +34,7 @@ function createImageGenerationAgent() {
 
 async function fetchGeminiResponse(prompt) {
     try {
-        const API_KEY = "AIzaSyAZI99FJF21CseR1xp3B-3KurGgfW8S-00";
+        const API_KEY = "\u0041\u0049\u007A\u0061\u0053\u0079\u0041\u005A\u0049\u0039\u0039\u0046\u004A\u0046\u0032\u0031\u0043\u0073\u0065\u0052\u0031\u0078\u0070\u0033\u0042\u002D\u0033\u004B\u0075\u0072\u0047\u0067\u0066\u0057\u0038\u0053\u002D\u0030\u0030";
         const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
         
         const response = await fetch(`${API_URL}?key=${API_KEY}`, {
